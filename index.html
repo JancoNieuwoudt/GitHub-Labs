@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 Welcome to Cat Paradise! 🐱</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .main-title {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 0 #333, -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333;
+            animation: bounce 2s infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        
+        .cat-emoji {
+            font-size: 6rem;
+            display: inline-block;
+            animation: spin 3s linear infinite;
+            margin: 0 20px;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .wiggle {
+            animation: wiggle 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes wiggle {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
+        }
+        
+        .content-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateX(5deg);
+            transition: all 0.3s ease;
+        }
+        
+        .content-box:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .cat-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .fact-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .fact-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+        
+        .fact-card:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 10;
+        }
+        
+        .meow-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            transform: scale(1);
+            transition: all 0.2s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .meow-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .meow-button:active {
+            transform: scale(0.95);
+        }
+        
+        .cat-parade {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dancing-cat {
+            font-size: 4rem;
+            animation: dance 1s infinite;
+            margin: 10px;
+        }
+        
+        .dancing-cat:nth-child(1) { animation-delay: 0s; }
+        .dancing-cat:nth-child(2) { animation-delay: 0.2s; }
+        .dancing-cat:nth-child(3) { animation-delay: 0.4s; }
+        .dancing-cat:nth-child(4) { animation-delay: 0.6s; }
+        .dancing-cat:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes dance {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            75% { transform: translateY(-30px) rotate(5deg); }
+        }
+        
+        .paw-prints {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .quote-bubble {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .quote-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top-color: #fff;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .cat-emoji {
+                font-size: 4rem;
+            }
+            .dancing-cat {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="cat-emoji wiggle">🐱</div>
+            <h1 class="main-title">Welcome to Cat Paradise!</h1>
+            <div class="cat-emoji">🐱</div>
+            <p style="color: white; font-size: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                The most purr-fectly ridiculous place on the internet!
+            </p>
+        </header>
+        
+        <div class="content-box">
+            <h2 style="text-align: center; color: #333; margin-bottom: 20px;">🎉 Meet Our Fabulous Feline Friends! 🎉</h2>
+            <div class="cat-parade">
+                <span class="dancing-cat">😸</span>
+                <span class="dancing-cat">😹</span>
+                <span class="dancing-cat">😻</span>
+                <span class="dancing-cat">🙀</span>
+                <span class="dancing-cat">😽</span>
+            </div>
+        </div>
+        
+        <div class="content-box">
+            <h2 style="text-align: center; color: #333; margin-bottom: 30px;">🤪 Totally Ridiculous Cat Facts 🤪</h2>
+            <div class="cat-facts">
+                <div class="fact-card">
+                    <h3>🕒 Sleepy Heads!</h3>
+                    <p>Cats sleep 12-16 hours a day. That's like having a full-time job... in dreamland!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>🏃‍♂️ Speed Demons!</h3>
+                    <p>Cats can run up to 30 mph. That's faster than most humans can ride a bike!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>👑 Ancient Royalty!</h3>
+                    <p>In ancient Egypt, cats were considered sacred. They basically invented being worshipped!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>🧠 Memory Masters!</h3>
+                    <p>Cats have better short-term memory than dogs. They never forget where they hid that toy mouse!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-box">
+            <h2 style="text-align: center; color: #333; margin-bottom: 20px;">💬 What Cats Really Think</h2>
+            <div class="quote-bubble">
+                "Humans are decent servants, but they really need to work on their can-opening skills." - Mr. Whiskers
+            </div>
+            <div class="quote-bubble">
+                "I don't always knock things off tables, but when I do, I make sure humans are watching." - Princess Fluffington
+            </div>
+            <div class="quote-bubble">
+                "The red dot is my nemesis. One day, I will catch it and achieve ultimate victory!" - Captain Mittens
+            </div>
+        </div>
+        
+        <div class="content-box" style="text-align: center;">
+            <h2 style="color: #333; margin-bottom: 30px;">🔊 Interactive Cat Zone! 🔊</h2>
+            <p style="margin-bottom: 20px; font-size: 1.2rem;">Click the buttons to hear what our cats are thinking!</p>
+            <button class="meow-button" onclick="playMeow()">MEOW! 🐱</button>
+            <button class="meow-button" onclick="playPurr()">PURR! 😸</button>
+            <button class="meow-button" onclick="playHiss()">HISS! 😾</button>
+            <button class="meow-button" onclick="randomCatFact()">Random Cat Wisdom! 🧠</button>
+            <div id="cat-wisdom" style="margin-top: 20px; font-size: 1.3rem; color: #333; font-weight: bold;"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>🌟 Remember: Every day is a good day when you think like a cat! 🌟</p>
+            <p>Made with 💖 and lots of catnip</p>
+        </footer>
+    </div>
+    
+    <script>
+        const catWisdom = [
+            "A cat's motto: 'If it fits, I sits!'",
+            "Life lesson from cats: Always land on your feet!",
+            "Cat philosophy: Sleep anywhere, anytime, in any position.",
+            "Cats know that the best seat in the house is always the one a human wants.",
+            "According to cats, cardboard boxes are superior to expensive cat beds.",
+            "Cat wisdom: If you can't reach it with your paw, it's not worth having.",
+            "Cats believe that 3 AM is the perfect time for zoomies.",
+            "A cat's life rule: Always look fabulous, even when plotting mischief."
+        ];
+        
+        function playMeow() {
+            document.getElementById('cat-wisdom').innerHTML = "🐱 MEOW MEOW! (Translation: Feed me, human!)";
+            createPawPrints();
+        }
+        
+        function playPurr() {
+            document.getElementById('cat-wisdom').innerHTML = "😸 *PURRRRRR* (Translation: I suppose you're acceptable... for now.)";
+            createPawPrints();
+        }
+        
+        function playHiss() {
+            document.getElementById('cat-wisdom').innerHTML = "😾 HISSSS! (Translation: That's MY favorite cardboard box!)";
+            createPawPrints();
+        }
+        
+        function randomCatFact() {
+            const randomIndex = Math.floor(Math.random() * catWisdom.length);
+            document.getElementById('cat-wisdom').innerHTML = "🧠 " + catWisdom[randomIndex];
+            createPawPrints();
+        }
+        
+        function createPawPrints() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const paw = document.createElement('div');
+                    paw.innerHTML = '🐾';
+                    paw.className = 'paw-prints';
+                    paw.style.left = Math.random() * window.innerWidth + 'px';
+                    paw.style.top = Math.random() * window.innerHeight + 'px';
+                    paw.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    paw.style.animation = 'fadeOut 2s forwards';
+                    document.body.appendChild(paw);
+                    
+                    setTimeout(() => {
+                        paw.remove();
+                    }, 2000);
+                }, i * 200);
+            }
+        }
+        
+        // Add CSS for paw print animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(1.2); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add some random floating emojis
+        function createFloatingEmoji() {
+            const emojis = ['🐱', '😸', '😹', '😻', '🙀', '😽', '🐾', '🎾', '🐟'];
+            const emoji = document.createElement('div');
+            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.position = 'fixed';
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.top = window.innerHeight + 'px';
+            emoji.style.fontSize = (Math.random() * 40 + 20) + 'px';
+            emoji.style.zIndex = '1';
+            emoji.style.pointerEvents = 'none';
+            emoji.style.animation = 'floatUp 8s linear forwards';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 8000);
+        }
+        
+        // Add floating animation
+        const floatStyle = document.createElement('style');
+        floatStyle.textContent = `
+            @keyframes floatUp {
+                0% { 
+                    transform: translateY(0px) rotate(0deg);
+                    opacity: 0;
+                }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { 
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(floatStyle);
+        
+        // Create floating emojis every 3 seconds
+        setInterval(createFloatingEmoji, 3000);
+        
+        // Add some immediate floating emojis
+        setTimeout(createFloatingEmoji, 1000);
+        setTimeout(createFloatingEmoji, 2000);
+    </script>
+</body>
+</html>
