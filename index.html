@@ -355,22 +355,18 @@
         
         // Add some random floating emojis
         function createFloatingEmoji() {
-            const emojis = ['🐱', '😸', '😹', '😻', '🙀', '😽', '🐾', '🎾', '🐟'];
-            const emoji = document.createElement('div');
-            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.position = 'fixed';
-            emoji.style.left = Math.random() * window.innerWidth + 'px';
-            emoji.style.top = window.innerHeight + 'px';
-            emoji.style.fontSize = (Math.random() * 40 + 20) + 'px';
-            emoji.style.zIndex = '1';
-            emoji.style.pointerEvents = 'none';
-            emoji.style.animation = 'floatUp 8s linear forwards';
-            document.body.appendChild(emoji);
-            
-            setTimeout(() => {
-                emoji.remove();
-            }, 8000);
+        const emojis = ['🐱', '😸', '😹', '😻', '🙀', '😽', '🐾', '🎾', '🐟'];
+        const emojiEl = document.createElement('div');
+        emojiEl.className = 'floating-emoji';
+        emojiEl.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+        emojiEl.style.left = `${Math.random() * 100}%`;
+        emojiEl.style.fontSize = `${Math.random() * 30 + 20}px`;
+        document.body.appendChild(emojiEl);
+
+        setTimeout(() => emojiEl.remove(), 8000);
         }
+
         
         // Add floating animation
         const floatStyle = document.createElement('style');
